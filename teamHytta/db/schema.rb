@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023231004) do
+ActiveRecord::Schema.define(version: 20141024002418) do
 
   create_table "cabins", force: true do |t|
     t.string   "navn"
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 20141023231004) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "posts", force: true do |t|
+    t.text     "message"
+    t.integer  "cabin_id"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["cabin_id"], name: "index_posts_on_cabin_id"
+  add_index "posts", ["parent_id"], name: "index_posts_on_parent_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
